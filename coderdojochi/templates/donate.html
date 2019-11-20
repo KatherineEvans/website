@@ -33,9 +33,7 @@
   </div>
 </div>
 </form>
-</div>
-
-<div class="container">
+<div class="grid-container margin-top-2">
     <h2 class="title">You can help!</h2>
     <p>We All Code is a registered non-profit organization supported entirely by...you! Please help us continue our mission by donating a small amount to our cause. Thank you! </p>
 
@@ -45,6 +43,9 @@
 
   {{ form.render }}
 </div>
+</div>
+
+
 
 {% endblock %}
 
@@ -53,9 +54,9 @@
 
 <script>
   var stripe = Stripe('pk_test_T35wVvyi33b1NmWs6djRMdXJ');
-
   // Create an instance of Elements.
   var elements = stripe.elements();
+  var key =  "sk_test_U8evVpOMjZPGnMrxhLwLkrPz";
 
   // Custom styling can be passed to options when creating an Element.
   // (Note that this demo uses a wider set of styles than the guide below.)
@@ -114,6 +115,11 @@
   function stripeTokenHandler(token) {
     // Insert the token ID into the form so it gets submitted to the server
     var form = document.getElementById('payment-form');
+    var stripeKey = document.createElement('stripe.api_key');
+    stripeKey.setAttribute('type', 'hidden');
+    stripeKey.setAttribute('name', 'stripe.api_key');
+    stripeKey.setAttribute('value', "sk_test_U8evVpOMjZPGnMrxhLwLkrPz");
+    form.appendChild(stripeKey);
     var hiddenInput = document.createElement('input');
     hiddenInput.setAttribute('type', 'hidden');
     hiddenInput.setAttribute('name', 'stripeToken');
